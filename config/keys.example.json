@@ -1,0 +1,27 @@
+{
+  "keys": [
+    {
+      "keyId": "pk_test_example123",
+      "type": "public",
+      "name": "Example Public Key - Development",
+      "allowedDomains": [
+        "localhost:*",
+        "127.0.0.1:*",
+        "example.com",
+        "*.example.com"
+      ],
+      "rateLimit": {
+        "requests": 1000,
+        "generations": 10
+      },
+      "createdAt": "2025-12-11T00:00:00Z",
+      "expiresAt": null
+    },
+    {
+      "keyHash": "REPLACE_WITH_SHA256_HASH_OF_ADMIN_KEY",
+      "type": "admin",
+      "name": "Admin Key",
+      "createdAt": "2025-12-11T00:00:00Z"
+    }
+  ]
+}
