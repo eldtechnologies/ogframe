@@ -65,48 +65,15 @@ export async function generateScreenshot(url: string): Promise<Buffer> {
       logger.debug('Starting screenshot generation', { url });
 
       // Launch browser (fresh instance for each screenshot)
-      // Use system Chromium in Docker, fall back to Playwright's bundled browser locally
       browser = await chromium.launch({
-        executablePath: process.env.CHROMIUM_PATH || undefined,
         headless: true,
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
           '--disable-dev-shm-usage',
           '--disable-gpu',
-          '--disable-software-rasterizer',
-          '--single-process',
-          '--no-zygote',
-          '--no-first-run',
-          '--disable-extensions',
-          '--disable-background-networking',
-          '--disable-background-timer-throttling',
-          '--disable-backgrounding-occluded-windows',
-          '--disable-breakpad',
-          '--disable-client-side-phishing-detection',
-          '--disable-component-update',
-          '--disable-default-apps',
-          '--disable-domain-reliability',
-          '--disable-features=AudioServiceOutOfProcess',
-          '--disable-hang-monitor',
-          '--disable-ipc-flooding-protection',
-          '--disable-notifications',
-          '--disable-offer-store-unmasked-wallet-cards',
-          '--disable-popup-blocking',
-          '--disable-print-preview',
-          '--disable-prompt-on-repost',
-          '--disable-renderer-backgrounding',
-          '--disable-speech-api',
-          '--disable-sync',
           '--hide-scrollbars',
-          '--ignore-gpu-blacklist',
-          '--metrics-recording-only',
-          '--mute-audio',
-          '--no-default-browser-check',
-          '--no-pings',
-          '--password-store=basic',
-          '--use-mock-keychain',
-          '--autoplay-policy=no-user-gesture-required'  // Critical for video autoplay
+          '--mute-audio'
         ],
         timeout: 30000
       });
@@ -213,10 +180,7 @@ export async function generateScreenshot(url: string): Promise<Buffer> {
  */
 export async function checkBrowserInstalled(): Promise<boolean> {
   try {
-    const browser = await chromium.launch({
-      executablePath: process.env.CHROMIUM_PATH || undefined,
-      headless: true
-    });
+    const browser = await chromium.launch({ headless: true });
     await browser.close();
     return true;
   } catch (error) {

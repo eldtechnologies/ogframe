@@ -1,22 +1,16 @@
 # Multi-stage Dockerfile for OGFrame
-# Optimized for production deployment with security best practices
+# Using Playwright's official base image for reliable browser automation
 
 # ============================================
 # Stage 1: Builder
 # ============================================
-FROM node:20-alpine AS builder
-
-# Install build dependencies
-RUN apk add --no-cache python3 make g++
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 COPY tsconfig.json ./
-
-# Skip Playwright browser download (we use system Chromium)
-ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 # Install all dependencies (including devDependencies for build)
 RUN npm ci
@@ -33,29 +27,14 @@ RUN npm prune --production
 # ============================================
 # Stage 2: Production
 # ============================================
-FROM node:20-alpine
-
-# Install Playwright dependencies and curl for health checks
-RUN apk add --no-cache \
-    chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont \
-    font-noto-emoji \
-    curl
+FROM mcr.microsoft.com/playwright:v1.40.0-jammy
 
 # Set NODE_ENV to production
 ENV NODE_ENV=production
 
-# Set Chromium path for Playwright
-ENV CHROMIUM_PATH=/usr/bin/chromium-browser
-ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-
 # Create non-root user
-RUN addgroup -g 1001 ogframe && \
-    adduser -D -u 1001 -G ogframe ogframe
+RUN groupadd -g 1001 ogframe && \
+    useradd -u 1001 -g ogframe -m ogframe
 
 WORKDIR /app
 
