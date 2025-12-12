@@ -1,5 +1,5 @@
 /**
- * OGFrame v2.0
+ * OGFrame v1.0
  * Self-hosted OG image generator
  *
  * Simple: Screenshot URL → Serve as OG image
@@ -170,7 +170,7 @@ app.get('/health', (c: Context) => {
 
   const response: HealthResponse = {
     status: 'healthy',
-    version: '2.0.0',
+    version: '1.0.0',
     uptime,
     timestamp: new Date().toISOString(),
     cache: {
@@ -238,7 +238,7 @@ app.delete('/admin/cache', (c: Context) => {
 
 async function main() {
   try {
-    logger.info('Starting OGFrame v2.0...');
+    logger.info('Starting OGFrame v1.0...');
 
     // Initialize services
     logger.info('Initializing services...');
@@ -263,7 +263,7 @@ async function main() {
     console.log(`
 ┌─────────────────────────────────────────────┐
 │                                             │
-│   🖼️  OGFrame v2.0                          │
+│   🖼️  OGFrame v1.0                          │
 │   Self-Hosted OG Image Generator            │
 │                                             │
 │   Status: Running                           │

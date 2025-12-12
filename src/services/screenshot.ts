@@ -89,7 +89,7 @@ export async function generateScreenshot(url: string): Promise<Buffer> {
         javaScriptEnabled: true, // Need JS for SPAs
         bypassCSP: false,
         ignoreHTTPSErrors: false,
-        userAgent: 'OGFrame/2.0 (Screenshot Bot; +https://github.com/eldtechnologies/ogframe)'
+        userAgent: 'OGFrame/1.0 (Screenshot Bot; +https://github.com/eldtechnologies/ogframe)'
       });
 
       page = await context.newPage();
