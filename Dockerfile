@@ -27,7 +27,7 @@ RUN npm prune --production
 # ============================================
 # Stage 2: Production
 # ============================================
-FROM mcr.microsoft.com/playwright:v1.40.0-jammy
+FROM mcr.microsoft.com/playwright:v1.57.0-jammy
 
 # Set NODE_ENV to production
 ENV NODE_ENV=production
