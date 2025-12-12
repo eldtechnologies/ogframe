@@ -15,6 +15,9 @@ WORKDIR /app
 COPY package*.json ./
 COPY tsconfig.json ./
 
+# Skip Playwright browser download (we use system Chromium)
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+
 # Install all dependencies (including devDependencies for build)
 RUN npm ci
 
@@ -47,7 +50,7 @@ RUN apk add --no-cache \
 ENV NODE_ENV=production
 
 # Set Chromium path for Playwright
-ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV CHROMIUM_PATH=/usr/bin/chromium-browser
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 # Create non-root user

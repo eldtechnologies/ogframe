@@ -65,7 +65,9 @@ export async function generateScreenshot(url: string): Promise<Buffer> {
       logger.debug('Starting screenshot generation', { url });
 
       // Launch browser (fresh instance for each screenshot)
+      // Use system Chromium in Docker, fall back to Playwright's bundled browser locally
       browser = await chromium.launch({
+        executablePath: process.env.CHROMIUM_PATH || undefined,
         headless: true,
         args: [
           '--no-sandbox',
@@ -210,7 +212,10 @@ export async function generateScreenshot(url: string): Promise<Buffer> {
  */
 export async function checkBrowserInstalled(): Promise<boolean> {
   try {
-    const browser = await chromium.launch({ headless: true });
+    const browser = await chromium.launch({
+      executablePath: process.env.CHROMIUM_PATH || undefined,
+      headless: true
+    });
     await browser.close();
     return true;
   } catch (error) {

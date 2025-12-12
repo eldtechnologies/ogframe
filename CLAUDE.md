@@ -100,3 +100,21 @@ docker-compose up -d
 ```
 
 Multi-stage Dockerfile with Alpine, non-root user, pre-installed Chromium.
+
+## Git Commit Guidelines
+
+**Format:**
+```
+<type>: <short summary>
+
+<optional body with details>
+```
+
+**Types:** `feat`, `fix`, `refactor`, `docs`, `test`, `chore`
+
+**Rules:**
+- Use imperative mood ("Add feature" not "Added feature")
+- Keep subject line under 72 characters
+- No period at end of subject line
+- Separate subject from body with blank line
+- Do NOT include Claude Code attribution or co-author tags
