@@ -154,7 +154,10 @@ app.get('/api/image', async (c: Context) => {
     totalTime
   });
 
-  return c.body(imageBuffer);
+  return new Response(imageBuffer, {
+    status: 200,
+    headers: c.res.headers
+  });
 });
 
 // ============================================
@@ -187,7 +190,7 @@ app.get('/health', (c: Context) => {
 
 // Get cache stats
 app.get('/admin/cache/stats', (c: Context) => {
-  const authHeader = c.req.header('authorization') || c.req.query('key');
+  const authHeader = c.req.header('authorization') ?? c.req.query('key') ?? null;
   requireAdminAuth(authHeader);
 
   const stats = getCacheStats();
@@ -196,7 +199,7 @@ app.get('/admin/cache/stats', (c: Context) => {
 
 // Delete specific cache entry
 app.delete('/admin/cache/:key', (c: Context) => {
-  const authHeader = c.req.header('authorization') || c.req.query('key');
+  const authHeader = c.req.header('authorization') ?? c.req.query('key') ?? null;
   requireAdminAuth(authHeader);
 
   const cacheKey = c.req.param('key');
@@ -211,7 +214,7 @@ app.delete('/admin/cache/:key', (c: Context) => {
 
 // Purge entire cache
 app.delete('/admin/cache', (c: Context) => {
-  const authHeader = c.req.header('authorization') || c.req.query('key');
+  const authHeader = c.req.header('authorization') ?? c.req.query('key') ?? null;
   requireAdminAuth(authHeader);
 
   const all = c.req.query('all');
