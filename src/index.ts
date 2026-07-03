@@ -11,7 +11,8 @@ import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import type { Context } from 'hono';
-import type { ApiKey, ImageRequest, HealthResponse, ErrorResponse } from './types.js';
+import type { ContentfulStatusCode } from 'hono/utils/http-status';
+import type { ApiKey, HealthResponse, ErrorResponse } from './types.js';
 import { OGFrameError } from './types.js';
 import { initAuth, requireAuth, requireAdminAuth } from './services/auth.js';
 import { initCache, getFromCache, saveToCache, getCacheEntry, deleteCacheEntry, purgeCache, getCacheStats, getCacheHitRate } from './services/cache.js';
@@ -62,7 +63,7 @@ app.onError((err, c) => {
       error: err.message,
       code: err.code,
       details: err.details
-    }, err.statusCode as any);
+    }, err.statusCode as ContentfulStatusCode);
   }
 
   logger.error('Unexpected error', {

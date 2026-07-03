@@ -5,7 +5,6 @@
  */
 
 import { writeFileSync, readFileSync, existsSync } from 'fs';
-import { resolve } from 'path';
 import { generateApiKey, hashKey } from './utils/crypto.js';
 import type { KeyConfig, ApiKey, AdminKey } from './types.js';
 

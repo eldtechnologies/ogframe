@@ -23,7 +23,7 @@ export function normalizeUrl(url: string): string {
       .replace(/\/$/, ''); // Remove trailing slash
 
     return normalized;
-  } catch (error) {
+  } catch {
     throw new OGFrameError('INVALID_URL', `Invalid URL: ${url}`, 400);
   }
 }
@@ -36,7 +36,7 @@ export function validateUrl(url: string, allowedDomains: string[], requireHttps:
 
   try {
     parsed = new URL(url);
-  } catch (error) {
+  } catch {
     throw new OGFrameError('INVALID_URL', `Malformed URL: ${url}`, 400);
   }
 
