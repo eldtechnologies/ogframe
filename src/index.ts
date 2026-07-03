@@ -202,7 +202,7 @@ app.delete('/admin/cache/:key', (c: Context) => {
   const authHeader = c.req.header('authorization') ?? c.req.query('key') ?? null;
   requireAdminAuth(authHeader);
 
-  const cacheKey = c.req.param('key');
+  const cacheKey = c.req.param('key')!;
   const deleted = deleteCacheEntry(cacheKey);
 
   if (!deleted) {
