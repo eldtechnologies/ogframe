@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
@@ -13,13 +14,7 @@ export default tseslint.config(
       ecmaVersion: 2022,
       sourceType: 'module',
       globals: {
-        process: 'readonly',
-        console: 'readonly',
-        Buffer: 'readonly',
-        setTimeout: 'readonly',
-        clearTimeout: 'readonly',
-        setInterval: 'readonly',
-        clearInterval: 'readonly',
+        ...globals.node,
       },
     },
   }
