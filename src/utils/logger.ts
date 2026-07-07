@@ -23,7 +23,7 @@ class Logger {
     return LOG_LEVELS[level] >= LOG_LEVELS[this.level];
   }
 
-  private log(level: LogLevel, message: string, meta?: any) {
+  private log(level: LogLevel, message: string, meta?: Record<string, unknown>) {
     if (!this.shouldLog(level)) return;
 
     const timestamp = new Date().toISOString();
@@ -48,24 +48,24 @@ class Logger {
     }
   }
 
-  debug(message: string, meta?: any) {
+  debug(message: string, meta?: Record<string, unknown>) {
     this.log('debug', message, meta);
   }
 
-  info(message: string, meta?: any) {
+  info(message: string, meta?: Record<string, unknown>) {
     this.log('info', message, meta);
   }
 
-  warn(message: string, meta?: any) {
+  warn(message: string, meta?: Record<string, unknown>) {
     this.log('warn', message, meta);
   }
 
-  error(message: string, meta?: any) {
+  error(message: string, meta?: Record<string, unknown>) {
     this.log('error', message, meta);
   }
 
   // Special audit log for security events
-  audit(message: string, meta?: any) {
+  audit(message: string, meta?: Record<string, unknown>) {
     this.log('info', `[AUDIT] ${message}`, meta);
   }
 }

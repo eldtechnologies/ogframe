@@ -3,8 +3,8 @@
  * File-based caching with metadata tracking
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, statSync, unlinkSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs';
+import { join } from 'path';
 import type { CacheEntry, CacheMetadata, CacheStatsResponse } from '../types.js';
 import { generateCacheKey } from '../utils/crypto.js';
 import { logger } from '../utils/logger.js';

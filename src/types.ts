@@ -81,7 +81,7 @@ export interface CacheStatsResponse {
 export interface ErrorResponse {
   error: string;
   code: string;
-  details?: any;
+  details?: unknown;
 }
 
 export class OGFrameError extends Error {
@@ -89,7 +89,7 @@ export class OGFrameError extends Error {
     public code: string,
     message: string,
     public statusCode: number = 500,
-    public details?: any
+    public details?: unknown
   ) {
     super(message);
     this.name = 'OGFrameError';
