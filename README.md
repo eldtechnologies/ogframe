@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Status: Production Ready](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)]()
-[![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-blue.svg)]()
+[![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-blue.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
 Simple = Secure.
@@ -177,7 +177,7 @@ GET /health
 ```json
 {
   "status": "healthy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "uptime": 86400,
   "cache": {
     "enabled": true,
@@ -354,7 +354,7 @@ docker-compose build
 
 ## Project Status
 
-**Current Version:** v1.0.0 - Production Ready ✅
+**Current Version:** v1.0.1 - Production Ready ✅
 
 ### Future (v2.0+)
 - S3-compatible object storage (R2, B2, MinIO)
