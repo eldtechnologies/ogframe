@@ -1,6 +1,6 @@
 {
   "name": "ogframe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Self-hosted OG image generator - Screenshot your pages, serve as OG images",
   "main": "dist/index.js",
   "type": "module",

@@ -171,7 +171,7 @@ app.get('/health', (c: Context) => {
 
   const response: HealthResponse = {
     status: 'healthy',
-    version: '1.0.0',
+    version: '1.0.1',
     uptime,
     timestamp: new Date().toISOString(),
     cache: {
